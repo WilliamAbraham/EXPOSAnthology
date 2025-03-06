@@ -68,27 +68,21 @@ const WorkList = ({ works }) => {
 
       {/* Display Filtered Works */}
       <ul>
-        {filteredWorks.map((work) => {
-          // Extract the file ID from the Google Docs URL
-          const docId = work.pdf.split('/')[5]; // Assuming the URL is in the typical format
-          const previewUrl = `https://docs.google.com/document/d/e/${docId}/pub?embedded=true`;
-
-          return (
-            <li key={work.Title}>
-              <h3>{work.Title}</h3>
-              <p>By: {work.Name}</p>
-              {/* Embed the Google Docs preview */}
-              <iframe
-                src={previewUrl}
-                width="600"
-                height="400"
-                frameBorder="0"
-                allowFullScreen
-                title={work.Title}
-              ></iframe>
-            </li>
-          );
-        })}
+        {filteredWorks.map((work) => (
+          <li key={work.Title}>
+            <h3>{work.Title}</h3>
+            <p>By: {work.Name}</p>
+            {/* Embed the Google Drive PDF preview */}
+            <iframe
+              src={work.pdf}
+              width="600"
+              height="400"
+              frameBorder="0"
+              allowFullScreen
+              title={work.Title}
+            ></iframe>
+          </li>
+        ))}
       </ul>
     </div>
   );
